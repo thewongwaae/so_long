@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render.window                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:30:31 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 19:22:29 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/19 22:47:42 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	refresh(t_game *game)
+{
+	if (game->window.fps == 5000)
+	{
+		mlx_clear_window(game->mlx, game->win);
+		if (game->window.enemy == game->sprites.enemy1)
+			game->window.enemy = game->sprites.enemy2;
+		else
+			game->window.enemy = game->sprites.enemy1;
+		game->window.fps = 0;
+		render(game->map, game);
+	}
+	else
+		game->window.fps++;
+	return (0);
+}
 
 void	sprites(t_game *game)
 {

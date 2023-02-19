@@ -6,13 +6,13 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:04:58 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 19:23:16 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/19 23:10:06 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*ft_join(char *buff, char *buffer)
+char	*ft_join(char *buff, char *buffer)
 {
 	char	*dest;
 
@@ -90,7 +90,7 @@ static char	*read_file(int fd, char *buff)
 		}
 		buffer[s] = 0;
 		buff = ft_join(buff, buffer);
-		if (check_c(buffer, '\n'))
+		if (check_ch(buffer, '\n'))
 			break ;
 	}
 	free(buffer);

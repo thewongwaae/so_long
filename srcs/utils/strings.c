@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:55:14 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 19:23:26 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/19 23:10:20 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,22 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (dst);
 }
 
-char	*check_c(char *str, int sep)
+char	*ft_strdup(char *s)
+{
+	char	*out;
+	int		i;
+
+	i = -1;
+	out = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!out)
+		return (NULL);
+	while (s[++i])
+		out[i] = s[i];
+	out[i] = '\0';
+	return (out);
+}
+
+char	*check_ch(char *str, int sep)
 {
 	int		i;
 
