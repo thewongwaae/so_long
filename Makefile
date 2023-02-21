@@ -2,7 +2,8 @@ NAME		= so_long
 CC			= gcc
 RM 			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g3 
-MLX			= -lmlx -framework OpenGL -framework AppKit -lz
+MLX			= -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXA		= mlx/libmlx.a
 INCLUDES	= -I includes
 
 GAME		= main move render
@@ -20,7 +21,7 @@ OBJS = $(SRCS:c=o)
 $(NAME): $(OBJS)
 	@echo "\n"
 	@echo "\033[0;32;1mCompiling so_long..."
-	@$(CC) $(CFLAGS) $(MLX) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MLXA) $(MLX) $(OBJS) -o $(NAME)
 	@echo "\n\033[0mDone !"
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:13:48 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 23:09:51 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/20 10:36:52 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	mapsize(t_game *game)
 	}
 	if (y == x)
 		return (1);
-	game->size.x = x;
-	game->size.y = y;
+	game->size.x = x * 50;
+	game->size.y = y * 40;
 	return (0);
 }
 
@@ -107,6 +107,8 @@ static int	rowwall(t_game *game)
 
 int	checks(t_game *game, char **av)
 {
+	if (check_av(av) == 1)
+		return (1);
 	if (mapsize(game) == 1)
 		return (1);
 	if (validity(game) == 1)
@@ -118,8 +120,6 @@ int	checks(t_game *game, char **av)
 	if (check_ce(game) == 1)
 		return (1);
 	if (check_player(game) == 1)
-		return (1);
-	if (check_av(av) == 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:47:58 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 22:49:16 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/21 16:50:21 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static char	**parse_map(char *mapfile)
 	{
 		if (line == NULL || line[0] == '\n')
 			break ;
-		out = ft_join(out, line);
+		out = ft_free(out, line);
 		if (line)
 			free(line);
 		line = get_next_line(fd);
@@ -93,15 +93,20 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		game.map = parse_map(av[1]);
+		//printf("parsed\n");
 		if (checks(&game, av) == 1)
 			return (write(2, "Map file provided was invalid.\n", 31));
-		game.map = parse_map(av[1]);
+		//printf("checked map\n");
 		game.window.fps = 0;
 		game.steps = 0;
 		game.mlx = mlx_init();
-		game.win = mlx_new_window(game.mlx, 1920, 1080, "so_long");
+		game.win = mlx_new_window(game.mlx, game.size.x, game.size.y, "so_long");
+		//printf("mlx shit done\n");
 		sprites(&game);
+		//printf("sprites done\n");
 		render(game.map, &game);
+		//printf("render done\n");
 		mlx_hook(game.win, 2, (1L << 0), move, &game);
 		mlx_hook(game.win, 17, (1L << 0), endgame, &game);
 		mlx_loop_hook(game.mlx, refresh, &game);

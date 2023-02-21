@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:03:59 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 23:04:25 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/20 10:24:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,39 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		*(str_num + 0) = '-';
 	return (str_num);
+}
+
+static void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
+		str[i++] = '\0';
+}
+
+void	*ft_calloc(size_t num, size_t size)
+{
+	char	*res;
+
+	res = malloc(size * num);
+	if (!res)
+		return (NULL);
+	ft_bzero(res, size * num);
+	return (res);
+}
+
+char	*ft_strchr(char *s, int ch)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str != ch && *str != 0)
+		str++;
+	if (*str == ch)
+		return (str);
+	else
+		return (NULL);
 }

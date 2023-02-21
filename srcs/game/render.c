@@ -39,6 +39,9 @@ void	sprites(t_game *game)
 	game->sprites.player = mlx_xpm_file_to_image(game->mlx, "sprites/player.xpm", &x, &y);
 	game->sprites.exit1 = mlx_xpm_file_to_image(game->mlx, "sprites/exit1.xpm", &x, &y);
 	game->sprites.exit2 = mlx_xpm_file_to_image(game->mlx, "sprites/exit2.xpm", &x, &y);
+	game->sprites.enemy1 = mlx_xpm_file_to_image(game->mlx, "sprites/enemy1.xpm", &x, &y);
+	game->sprites.enemy2 = mlx_xpm_file_to_image(game->mlx, "sprites/enemy2.xpm", &x, &y);
+	game->window.enemy = game->sprites.enemy1;
 	game->window.exit = game->sprites.exit1;
 }
 
@@ -54,6 +57,7 @@ static void	show_steps(t_game *game)
 	free(out);
 }
 
+// image placement issue here, use 2 new ints to leave x and y unchanged
 void	render(char **map, t_game *game)
 {
 	int	y;
@@ -66,13 +70,13 @@ void	render(char **map, t_game *game)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->sprites.wall, x + 50, y + 40);
-			if (map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, game->sprites.collect, x + 50, y + 40);
-			if (map[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, game->sprites.player, x + 50, y + 40);
-			if (map[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->window.exit, x + 50, y + 40);
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.wall, x * 50, y * 40);
+			else if (map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.collect, x * 50, y * 40);
+			else if (map[y][x] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, game->sprites.player, x * 50, y * 40);
+			else if (map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, game->window.exit, x * 50, y * 40);
 			x++;
 		}
 		y++;

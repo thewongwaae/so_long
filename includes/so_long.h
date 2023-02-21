@@ -6,17 +6,18 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:48:41 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 23:08:22 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/20 10:39:33 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # define BUFFER_SIZE 1024
 
@@ -92,8 +93,10 @@ int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);
 char	*ft_itoa(int n);
+void	*ft_calloc(size_t num, size_t size);
+char	*ft_strchr(char *s, int ch);
 // gnl
-char	*ft_join(char *buff, char *buffer);
+char	*ft_free(char *buffer, char *buf);
 char	*check_ch(char *str, int sep);
 char	*get_next_line(int fd);
 // split
