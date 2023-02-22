@@ -6,14 +6,14 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 17:48:41 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/20 10:39:33 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/22 15:40:59 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -21,13 +21,13 @@
 
 # define BUFFER_SIZE 1024
 
-typedef struct	s_vec
+typedef struct s_vec
 {
 	int	x;
 	int	y;
 }		t_vec;
 
-typedef struct	s_window
+typedef struct s_window
 {
 	t_vec	size;
 	int		fps;
@@ -55,7 +55,7 @@ typedef struct s_sprites
 	void	*exit2;
 }			t_sprites;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	char		**map;
 	void		*mlx;

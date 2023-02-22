@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:24:49 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 23:09:24 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/22 16:47:32 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,17 @@ static void	save_state(t_game *game, int y, int x)
 		game->map[y][x] = '3';
 }
 
+// if out of bounds, kill branch
+// if entity met, kill branch
+// if player met, set collectible collectability to true
 static void	check_collect(t_game *game, int y, int x, int *c)
 {
 	if (game->tmp != *c)
 		return ;
 	if (y < 1 || x < 1 || game->size.y < y || game->size.x < x)
 		return ;
-	if ((game->map[y][x] >= '3' && game->map[y][x] <= '6')  || game->map[y][x] == '1' || game->map[y][x] == 'E')
+	if ((game->map[y][x] >= '3' && game->map[y][x] <= '6')
+		|| game->map[y][x] == '1' || game->map[y][x] == 'E')
 		return ;
 	if (game->map[y][x] == 'P')
 	{
@@ -69,13 +73,14 @@ static void	check_collect(t_game *game, int y, int x, int *c)
 	check_collect(game, y, x + 1, c);
 }
 
-static void	check_enemy(t_game *game, int y, int x, int *e)
+static void	check_exit(t_game *game, int y, int x, int *e)
 {
 	if (*e > 0)
 		return ;
 	if (y < 1 || x < 1 || game->size.y < y || game->size.x < x)
 		return ;
-	if ((game->map[y][x] >= '3' && game->map[y][x] <= '6')  || game->map[y][x] == '1')
+	if ((game->map[y][x] >= '3' && game->map[y][x] <= '6')
+		|| game->map[y][x] == '1')
 		return ;
 	if (game->map[y][x] == 'P')
 	{
@@ -83,10 +88,10 @@ static void	check_enemy(t_game *game, int y, int x, int *e)
 		return ;
 	}
 	save_state(game, y, x);
-	check_enemy(game, y - 1, x, e);
-	check_enemy(game, y + 1, x, e);
-	check_enemy(game, y, x - 1, e);
-	check_enemy(game, y, x + 1, e);
+	check_exit(game, y - 1, x, e);
+	check_exit(game, y + 1, x, e);
+	check_exit(game, y, x - 1, e);
+	check_exit(game, y, x + 1, e);
 }
 
 int	check_ce(t_game *game)
@@ -109,13 +114,10 @@ int	check_ce(t_game *game)
 				game->tmp = c;
 				check_collect(game, y, x, &c);
 			}
-			restore(game);
-			if (game->map[y][x] == 'E')
-				check_enemy(game, y, x, &e);
+			else if (game->map[y][x] == 'E')
+				check_exit(game, y, x, &e);
 			restore(game);
 		}
 	}
-	if (c != collect(game) || e != 1)
-		return (1);
-	return (0);
+	return (c != collect(game) || e != 1);
 }

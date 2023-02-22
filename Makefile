@@ -2,8 +2,8 @@ NAME		= so_long
 CC			= gcc
 RM 			= rm -rf
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g3 
-MLX			= -Lmlx -lmlx -framework OpenGL -framework AppKit
-MLXA		= mlx/libmlx.a
+MLX			= -lmlx -framework OpenGL -framework AppKit
+MLXA		= libmlx.a
 INCLUDES	= -I includes
 
 GAME		= main move render

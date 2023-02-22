@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 19:56:53 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/19 23:02:13 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/22 15:42:17 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,16 @@ int	mup(t_game *game)
 	get_pos(game);
 	if (game->map[game->playerpos.y - 1][game->playerpos.x] == '1')
 		return (0);
-	if (game->map[game->playerpos.y - 1][game->playerpos.x] == 'E' && collect(game) > 0)
+	if (game->map[game->playerpos.y - 1][game->playerpos.x] == 'E'
+			&& collect(game) > 0)
 		return (0);
 	if (game->map[game->playerpos.y - 1][game->playerpos.x] == '2')
 	{
 		write(2, "YOU DIED !\n", 11);
 		exit (-1);
 	}
-	if (game->map[game->playerpos.y - 1][game->playerpos.x] == 'E' && collect(game) == 0)
+	if (game->map[game->playerpos.y - 1][game->playerpos.x] == 'E'
+			&& collect(game) == 0)
 	{
 		write(1, "YOU WIN !\n", 10);
 		exit (0);
@@ -65,14 +67,16 @@ int	mdown(t_game *game)
 	get_pos(game);
 	if (game->map[game->playerpos.y + 1][game->playerpos.x] == '1')
 		return (0);
-	if (game->map[game->playerpos.y + 1][game->playerpos.x] == 'E' && collect(game) > 0)
+	if (game->map[game->playerpos.y + 1][game->playerpos.x] == 'E'
+			&& collect(game) > 0)
 		return (0);
 	if (game->map[game->playerpos.y + 1][game->playerpos.x] == '2')
 	{
 		write(2, "YOU DIED !\n", 11);
 		exit (-1);
 	}
-	if (game->map[game->playerpos.y + 1][game->playerpos.x] == 'E' && collect(game) == 0)
+	if (game->map[game->playerpos.y + 1][game->playerpos.x] == 'E'
+			&& collect(game) == 0)
 	{
 		write(1, "YOU WIN !\n", 10);
 		exit (0);
@@ -92,14 +96,16 @@ int	mleft(t_game *game)
 	get_pos(game);
 	if (game->map[game->playerpos.y][game->playerpos.x - 1] == '1')
 		return (0);
-	if (game->map[game->playerpos.y][game->playerpos.x - 1] == 'E' && collect(game) > 0)
+	if (game->map[game->playerpos.y][game->playerpos.x - 1] == 'E'
+			&& collect(game) > 0)
 		return (0);
 	if (game->map[game->playerpos.y][game->playerpos.x - 1] == '2')
 	{
 		write(2, "YOU DIED !\n", 11);
 		exit (-1);
 	}
-	if (game->map[game->playerpos.y][game->playerpos.x - 1] == 'E' && collect(game) == 0)
+	if (game->map[game->playerpos.y][game->playerpos.x - 1] == 'E'
+			&& collect(game) == 0)
 	{
 		write(1, "YOU WIN !\n", 10);
 		exit (0);
@@ -119,14 +125,16 @@ int	mright(t_game *game)
 	get_pos(game);
 	if (game->map[game->playerpos.y][game->playerpos.x + 1] == '1')
 		return (0);
-	if (game->map[game->playerpos.y][game->playerpos.x + 1] == 'E' && collect(game) > 0)
+	if (game->map[game->playerpos.y][game->playerpos.x + 1] == 'E'
+			&& collect(game) > 0)
 		return (0);
 	if (game->map[game->playerpos.y][game->playerpos.x + 1] == '2')
 	{
 		write(2, "YOU DIED !\n", 11);
 		exit (-1);
 	}
-	if (game->map[game->playerpos.y][game->playerpos.x + 1] == 'E' && collect(game) == 0)
+	if (game->map[game->playerpos.y][game->playerpos.x + 1] == 'E'
+			&& collect(game) == 0)
 	{
 		write(1, "YOU WIN !\n", 10);
 		exit (0);

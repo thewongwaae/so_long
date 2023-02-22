@@ -6,7 +6,7 @@
 /*   By: hwong <hwong@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:13:48 by hwong             #+#    #+#             */
-/*   Updated: 2023/02/20 10:36:52 by hwong            ###   ########.fr       */
+/*   Updated: 2023/02/22 16:02:40 by hwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static int	validity(t_game *game)
 		}
 		game->check.size.y++;
 	}
-	if (game->check.collect < 1 || game->check.player != 1 || game->check.enemy != 1)
+	if (game->check.collect < 1 || game->check.player != 1
+		|| game->check.enemy != 1)
 		return (1);
 	return (0);
 }
